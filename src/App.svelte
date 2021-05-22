@@ -7,12 +7,14 @@
 	let waitingQueue = []
 
 	onMount(() => {
-		if (Array.isArray(counters)) {
+		if (Array.isArray(countersName)) {
 			counters = countersName.map(counterName => ({
 				name: counterName,
 				processing: null,
 				processed: [],
 			}))
+		} else {
+			alert('警告：輸入行員資訊必須為陣列')
 		}
 	})
 
