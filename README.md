@@ -1,105 +1,49 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# 號碼機
 
----
+這是一個實作號碼機功能的專案，用 Svelte 搭配 SCSS 寫成，
+可至 [Github](https://github.com/ro1963855/numbering-machine) 觀看詳細程式碼
 
-# svelte app
+## 使用教學
+### 1. 安裝 Nodejs
+請先確保已經安裝好 [Node.js](https://nodejs.org)
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+### 2. 解壓縮 numbering-machine.zip
 
 ```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+unzip numbering-machine.zip
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
+### 3. 安裝相關 library
 
 ```bash
-cd svelte-app
+cd numbering-machine
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+### 4. 調整櫃檯人數
+
+請到 `src/main.js` 路徑底下，修改 `countersName` 陣列的內容來增減數量(櫃員的處理速度將由接到任務當下隨機設定為 0.5 秒至 1.5 秒)
+
+
+```js
+countersName: ['Amy', 'Bob', 'Cory', 'Dora', 'NEW']
+```
+
+### 執行專案
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+若 `5000` port 尚未佔用，可透過 [localhost:5000](http://localhost:5000) 來開啟頁面，詳細狀況可觀看當下 Bash 資訊
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+### 專案介紹
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+此網頁模擬銀行 `號碼機` 的功能，使用者可以透過按鈕來抽取 `號碼牌`，
+並等待行員有空時，就會叫號處理，下列為頁面上的名詞解釋:
 
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+> Waiting: 代表尚未處理的人數   
+> Counter: 櫃檯人員名稱   
+> Processing: 櫃檯人員狀態，`Idle` 代表閒置，`號碼` 則代表正在處理客戶的號碼牌數字     
+> Processed: 已處理過客戶 `號碼` 的紀錄，會用 `逗號` 隔開，尚未處理任何客戶時為空   
+> Next `號碼`: 按鈕後的數字代表即將抽到的 `號碼牌`
